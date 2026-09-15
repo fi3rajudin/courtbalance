@@ -2,6 +2,8 @@
 
 Small Spring Boot web app for splitting badminton court/shuttle costs among club members.
 
+https://courtbalance.onrender.com/
+
 ## V1 features
 
 - OWNER/ADMIN login
