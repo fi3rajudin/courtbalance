@@ -21,21 +21,6 @@ Small Spring Boot web app for splitting badminton court/shuttle costs among club
 - Maven 3.9+
 - PostgreSQL, or a Supabase PostgreSQL connection
 
-Environment variables:
-
-```text
-DB_URL=jdbc:postgresql://<host>:5432/<database>?sslmode=require
-DB_USERNAME=<database-user>
-DB_PASSWORD=<database-password>
-BOOTSTRAP_OWNER_USERNAME=fit
-BOOTSTRAP_OWNER_PASSWORD=<strong-password>
-SUPABASE_URL=https://<project>.supabase.co
-SUPABASE_SERVICE_KEY=<service-role-key>
-SUPABASE_QR_BUCKET=member-qr
-```
-
-`BOOTSTRAP_OWNER_*` is used only to create the OWNER if that username does not already exist. Change the password later through a proper admin-management flow if you extend V1.
-
 Run:
 
 ```bash
