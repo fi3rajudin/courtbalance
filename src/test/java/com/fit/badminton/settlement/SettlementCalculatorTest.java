@@ -1,0 +1,9 @@
+package com.fit.badminton.settlement;
+import static org.assertj.core.api.Assertions.*; import java.math.BigDecimal; import java.util.*; import org.junit.jupiter.api.Test;
+class SettlementCalculatorTest {private final SettlementCalculator c=new SettlementCalculator();
+ @Test void splitsSimpleSessionEqually(){var r=c.calculate(List.of(1L,2L,3L),List.of(new ExpenseShareInput(1L,new BigDecimal("90.00"))));assertThat(r.totalCost()).isEqualByComparingTo("90.00");assertThat(r.shares().values()).allSatisfy(v->assertThat(v).isEqualByComparingTo("30.00"));assertThat(r.transfers()).hasSize(2);}
+ @Test void supportsMultipleCreditorsDeterministically(){var r=c.calculate(List.of(1L,2L,3L,4L,5L,6L),List.of(new ExpenseShareInput(1L,new BigDecimal("120.00")),new ExpenseShareInput(2L,new BigDecimal("60.00"))));assertThat(r.transfers()).containsExactly(new SettlementInstruction(3,1,new BigDecimal("30.00")),new SettlementInstruction(4,1,new BigDecimal("30.00")),new SettlementInstruction(5,1,new BigDecimal("30.00")),new SettlementInstruction(6,2,new BigDecimal("30.00")));}
+ @Test void allocatesRemainderCentsExactly(){var r=c.calculate(List.of(1L,2L,3L,4L,5L,6L),List.of(new ExpenseShareInput(1L,new BigDecimal("100.00"))));assertThat(r.shares().values().stream().reduce(BigDecimal.ZERO,BigDecimal::add)).isEqualByComparingTo("100.00");assertThat(r.shares().get(1L)).isEqualByComparingTo("16.67");assertThat(r.shares().get(5L)).isEqualByComparingTo("16.66");}
+ @Test void rejectsNonParticipantPayer(){assertThatThrownBy(()->c.calculate(List.of(1L,2L),List.of(new ExpenseShareInput(3L,new BigDecimal("5.00"))))).isInstanceOf(IllegalArgumentException.class);}
+ @Test void zeroCostProducesNoTransfers(){var r=c.calculate(List.of(1L,2L),List.of());assertThat(r.transfers()).isEmpty();assertThat(r.totalCost()).isEqualByComparingTo("0.00");}
+}

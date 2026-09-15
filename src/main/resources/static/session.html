@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Badminton Payment</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+    <main class="shell">
+        <section id="publicCard" class="card">
+            <p>Loading session…</p>
+        </section>
+    </main>
+    <div id="qrModal" class="modal hidden">
+        <div class="modal-card"><button id="closeQr" class="ghost right">Close</button>
+            <h2 id="qrTitle"></h2>
+            <p id="qrAmount"></p><img id="qrImage" alt="DuitNow QR">
+        </div>
+    </div>
+    <script src="/js/public-session.js"></script>
+</body>
+
+</html>

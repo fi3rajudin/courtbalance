@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Badminton Admin</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+    <main class="shell">
+        <header>
+            <h1>Last Minute Badminton Club</h1><button id="logout" class="ghost hidden">Logout</button>
+        </header>
+        <section id="login" class="card narrow">
+            <h2>Owner / Admin login</h2>
+            <form id="loginForm"><label>Username<input id="username" required></label><label>Password<input
+                        id="password" type="password" required></label><button>Login</button>
+                <p id="loginMsg" class="error"></p>
+            </form>
+        </section>
+        <div id="app" class="hidden">
+            <nav><button data-tab="dashboard">Dashboard</button><button data-tab="members">Members</button><button
+                    data-tab="sessions">Sessions</button><button data-tab="maintainers">Maintainers</button></nav>
+            <section id="dashboard" class="panel">
+                <h2>Dashboard</h2>
+                <div id="summary" class="grid"></div>
+            </section>
+            <section id="members" class="panel hidden">
+                <div class="row between">
+                    <h2>Members</h2><button id="addMember">Add member</button>
+                </div>
+                <div id="memberList"></div>
+            </section>
+            <section id="sessions" class="panel hidden">
+                <div class="row between">
+                    <h2>Sessions</h2><button id="newSession">Create session</button>
+                </div>
+                <div id="sessionList"></div>
+            </section>
+            <section id="maintainers" class="panel hidden">
+                <div class="row between">
+                    <h2>Maintainers</h2>
+                    <button id="addMaintainer">Add maintainer</button>
+                </div>
+                <div id="maintainerList"></div>
+            </section>
+            <section id="editor" class="panel hidden">
+                <div class="row between">
+                    <h2 id="editorTitle">Session</h2><button id="closeEditor" class="ghost">Close</button>
+                </div>
+                <form id="sessionForm"><input type="hidden" id="sessionId"><label>Title<input id="title"
+                            required></label><label>Date<input id="sessionDate" type="date"
+                            required></label><label>Notes<textarea id="notes"></textarea></label>
+                    <h3>Participants</h3>
+                    <div id="participantChecks" class="checks"></div>
+                    <h3>Expenses</h3>
+                    <div id="expenseRows"></div><button type="button" id="addExpense" class="secondary">Add
+                        expense</button>
+                    <div class="actions"><button type="submit">Save session</button><button type="button"
+                            id="previewBtn" class="secondary">Calculate</button><button type="button" id="openBtn"
+                            class="secondary">Open</button><button type="button" id="completeBtn"
+                            class="secondary">Complete</button><button type="button" id="reopenBtn"
+                            class="secondary">Reopen</button></div>
+                </form>
+                <pre id="preview" class="preview"></pre>
+                <div id="paymentAdmin"></div>
+            </section>
+        </div>
+        <footer>
+            <p>&copy; 2026 Last Minute Badminton Club. All rights reserved.</p>
+            <p>Developed by <a href="https://github.com/fi3rajudin" target="_blank">Fitri R</a></p>
+        </footer>
+    </main>
+    <div id="memberModal" class="modal hidden">
+        <div class="modal-card">
+            <div class="row between">
+                <h2 id="memberModalTitle">Add member</h2>
+                <button type="button" id="closeMemberModal" class="ghost">
+                    Close
+                </button>
+            </div>
+
+            <form id="memberForm">
+                <input type="hidden" id="memberId">
+
+                <label>
+                    Name
+                    <input id="memberName" required>
+                </label>
+
+                <label>
+                    Nickname
+                    <input id="memberNickname">
+                </label>
+
+                <label>
+                    Payment note
+                    <textarea id="memberPaymentNote"></textarea>
+                </label>
+
+                <label class="checkbox-row">
+                    <input id="memberActive" type="checkbox" checked>
+                    <span>Active</span>
+                </label>
+
+                <div class="actions">
+                    <button type="button" id="cancelMemberModal" class="secondary">
+                        Cancel
+                    </button>
+
+                    <button type="submit">
+                        Save member
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>

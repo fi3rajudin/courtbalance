@@ -1,0 +1,1 @@
+package com.fit.badminton.session.dto; import jakarta.validation.Valid; import jakarta.validation.constraints.*; import java.time.LocalDate; import java.util.List; public record SessionUpsertRequest(@NotBlank String title,@NotNull LocalDate sessionDate,String notes,@NotEmpty List<Long> participantIds,@Valid List<ExpenseInput> expenses,boolean recalculateSettlement){}
