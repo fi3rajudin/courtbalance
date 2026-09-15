@@ -1,4 +1,4 @@
-# Badminton Settlement
+# Badminton Settlement Application
 
 Small Spring Boot web app for splitting badminton court/shuttle costs among club members.
 
