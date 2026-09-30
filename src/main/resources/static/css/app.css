@@ -321,3 +321,16 @@ nav {
     align-items: center;
     margin-left: 6px;
 }
+
+.brand-logo {
+    height: 56px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
